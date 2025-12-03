@@ -1,5 +1,3 @@
-
-
 const accountNumber = sessionStorage.getItem("accountNumber");
 
 if (!accountNumber) {
@@ -23,13 +21,14 @@ document.getElementById("withdrawForm").addEventListener("submit", function (e) 
         return;
     }
 
-
     fetch(`/api/withdraw/${accountNumber}/${amount}`, {
         method: "POST"
     })
     .then(res => {
         if (!res.ok) {
-            return res.text().then(text => { throw new Error(text); });
+            return res.json().then(errorData => {  // This is the key fix!
+                throw new Error(errorData.message || "Withdrawal failed");
+            });
         }
         return res.json();
     })
@@ -40,24 +39,24 @@ document.getElementById("withdrawForm").addEventListener("submit", function (e) 
                 ₹${amount.toFixed(2)} Dispensed<br>
                 Remaining Balance: ₹${user.balance.toFixed(2)}
             </div>`;
-        
+
         document.getElementById("amount").value = "";
-        
+
         setTimeout(() => {
             window.location.href = "menu.html";
         }, 3000);
     })
     .catch(err => {
-        const error = err.message.toLowerCase();
+        const errorMsg = err.message.toLowerCase();
 
-        if (error.includes("insufficient")) {
+        if (errorMsg.includes("insufficient")) {
             msg.innerHTML = "<span style='color:#fca5a5; font-size:28px; font-weight:bold;'>Insufficient Balance!</span>";
-        } else if (error.includes("multiple")) {
+        } else if (errorMsg.includes("multiple")) {
             msg.innerHTML = "<span style='color:#fca5a5; font-size:24px;'>Amount must be multiple of ₹100!</span>";
-        } else if (error.includes("minimum")) {
+        } else if (errorMsg.includes("minimum")) {
             msg.innerHTML = "<span style='color:#fca5a5; font-size:24px;'>Minimum withdrawal ₹100!</span>";
         } else {
-            msg.innerHTML = `<span style='color:#fca5a5;'>Error: ${err.message}</span>`;
+            msg.innerHTML = `<span style='color:#fca5a5; font-size:24px;'>Error: ${err.message}</span>`;
         }
     });
 });

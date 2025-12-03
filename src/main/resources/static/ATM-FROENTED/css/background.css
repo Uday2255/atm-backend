@@ -1,0 +1,25 @@
+body{
+    margin:0;padding:0;min-height:100vh;
+    background:#0f172a;
+    position:relative;
+}
+.dots-bg{
+    position:fixed;
+    inset:0;               /* FULL SCREEN – DOTS START FROM TOP */
+    pointer-events:none;
+    z-index:1;
+}
+.dot{
+    position:absolute;
+    width:4px;height:4px;
+    background:#60a5fa;
+    border-radius:50%;
+    box-shadow:0 0 12px #60a5fa;
+    animation:float 12s linear infinite;
+}
+@keyframes float{
+    0%   {transform:translateY(-100px) rotate(0deg);opacity:0;}
+    10%  {opacity:1;}
+    90%  {opacity:1;}
+    100% {transform:translateY(calc(100vh + 100px)) rotate(360deg);opacity:0;}
+}

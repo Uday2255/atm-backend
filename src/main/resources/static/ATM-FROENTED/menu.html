@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM Menu</title>
+    <link rel="stylesheet" href="css/menu.css">
+<link rel="stylesheet" href="css/atm-bg.css">
+    
+    <style>
+        .logout {
+            background: linear-gradient(135deg, #dc2626, #ef4444) !important;
+            font-weight: bold;
+        }
+        .logout:hover {
+            background: linear-gradient(135deg, #b91c1c, #dc2626) !important;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+
+<div class="menu-container">
+    <h2 id="welcomeText">Welcome</h2>
+
+    <div class="menu-grid">
+        <a href="balance.html" class="menu-box">Balance Enquiry</a>
+        <a href="withdrawal.html" class="menu-box">Withdrawal</a>
+        <a href="deposit.html" class="menu-box">Deposit</a>
+        <a href="history.html" class="menu-box">Transaction History</a>
+        <a href="changepin.html" class="menu-box">Change PIN</a>
+        <a href="#" onclick="logout()" class="menu-box logout">Logout</a>
+    </div>
+</div>
+<script>
+// =============== 100% WORKING – BACK BUTTON = LOGIN PAGE ===============
+
+function isLoggedIn() {
+    return sessionStorage.getItem("accountNumber") !== null;
+}
+
+// If not logged in → go to login
+if (!isLoggedIn()) {
+    window.location.replace("index.html");
+}
+
+// THIS IS THE MAGIC LINE – MAKES BACK BUTTON GO TO LOGIN
+window.addEventListener("popstate", function() {
+    if (isLoggedIn()) {
+        // User is still logged in → block going back
+        history.go(1);  // This pushes forward again
+    } else {
+        // Not logged in → force login page
+        window.location.replace("index.html");
+    }
+});
+
+// Run on first load
+history.pushState(null, null, location.href);
+
+// Block page cache completely
+window.onpageshow = function(event) {
+    if (event.persisted) {
+        window.location.reload();
+    }
+};
+
+// Show username
+let username = sessionStorage.getItem("name") || "User";
+document.getElementById("welcomeText").textContent = `🪙Hi, Welcome!, ${username}`;
+
+// Logout function
+function logout() {
+    sessionStorage.clear();
+    alert("Logged out successfully!");
+    window.location.replace("index.html");
+}
+
+// Auto logout after 2 minutes
+let timer = setTimeout(() => {
+    sessionStorage.clear();
+    alert("Session expired!");
+    window.location.replace("index.html");
+}, 60000);
+
+document.onmousemove = document.onclick = document.onkeydown = () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+        sessionStorage.clear();
+        alert("Session expired!");
+        window.location.replace("index.html");
+    }, 60000);
+};
+
+</script>
+<script src="js/atm-bg.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+/* -------------------------
+   BODY (FULL PAGE)
+-------------------------- */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0f172a; /* dark ATM-like background */
+    color: white;
+    display: flex;
+    flex-direction: column;   /* IMPORTANT → allows welcome text above box */
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding-top: 40px;   
+     overflow-y: auto     /* spacing from top */
+}
+
+/* -------------------------
+   WELCOME TITLE
+-------------------------- */
+
+.welcome-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffffff;
+    letter-spacing: 2px;
+    margin-bottom: 90px;
+    text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff;
+    animation: glow 1.4s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 8px #00eaff; }
+    to   { text-shadow: 0 0 22px #00eaff; }
+}
+
+/* -------------------------
+   LOGIN / REGISTER BOX
+-------------------------- */
+
+.container {
+    background-color: #2c2c2c;
+    padding: 40px 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    width: 350px;
+    text-align: center;
+}
+
+/* -------------------------
+   HEADINGS INSIDE BOX
+-------------------------- */
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* -------------------------
+   INPUT FIELDS
+-------------------------- */
+
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+    width: 100%;
+    padding: 12px 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+/* -------------------------
+   BUTTON
+-------------------------- */
+
+button.btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button.btn:hover {
+    background-color: #45a049;
+}
+
+/* -------------------------
+   STATUS MESSAGE
+-------------------------- */
+
+#msg {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* -------------------------
+   LINKS
+-------------------------- */
+
+a {
+    color: #4CAF50;
+    text-decoration: none;
+    display: block;
+    margin-top: 15px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* -------------------------
+   OPTIONAL EXTRA STYLING
+-------------------------- */
+
+.balance-display {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.account-box {
+    background-color: #1b1b1b;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    border: 2px solid #4CAF50;
+    text-align: center;
+}
+
+.account-box p {
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+
+
+/* ADD THIS LINE ONLY – SOLVES EVERYTHING */
+.welcome-title,
+.container {
+    position: relative;
+    z-index: 10 !important;
+}
+
+/* ALSO ADD THIS TO MAKE SURE BACKGROUND STAYS BEHIND */
+.chain-bg {
+    z-index: 1 !important;   /* Was -1, now 1 but still behind login */
+}
+

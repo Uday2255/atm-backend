@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balance Enquiry</title>
+    <link rel="stylesheet" href="css/balance.css">
+</head>
+<body>
+     <h1 class="welcome-title">Balance Enquiry</h1>
+
+<div class="container">
+
+    <div class="balance-box">
+      <p><strong>Name:</strong> <span id="name">Loading...</span></p>
+     <p><strong>Account Number:</strong> <span id="accountNumber">Loading...</span></p>
+     <p><strong>Your Balance:</strong> <span id="balance">Loading...</span></p>
+  
+        
+    </div>
+
+    <a href="menu.html" class="back-btn">Back to Menu</a>
+</div>
+
+<script src="js/balance.js"></script>
+
+<script>
+// ---------------------
+// GO BACK TO MENU AFTER 30 SECONDS
+// ---------------------
+setTimeout(() => {
+    window.location.href = "menu.html";
+}, 10000); // 30 seconds
+
+</script>
+<script>
+// =============== 100% WORKING – BACK BUTTON = LOGIN PAGE ===============
+
+function isLoggedIn() {
+    return sessionStorage.getItem("accountNumber") !== null;
+}
+
+// If not logged in → go to login
+if (!isLoggedIn()) {
+    window.location.replace("index.html");
+}
+
+// THIS IS THE MAGIC LINE – MAKES BACK BUTTON GO TO LOGIN
+window.addEventListener("popstate", function() {
+    if (isLoggedIn()) {
+        // User is still logged in → block going back
+        history.go(1);  // This pushes forward again
+    } else {
+        // Not logged in → force login page
+        window.location.replace("index.html");
+    }
+});
+
+// Run on first load
+history.pushState(null, null, location.href);
+
+// Block page cache completely
+window.onpageshow = function(event) {
+    if (event.persisted) {
+        window.location.reload();
+    }
+};
+
+// Show username
+let username = sessionStorage.getItem("name") || "User";
+document.getElementById("welcomeText").textContent = `Welcome, ${username}`;
+
+// Logout function
+function logout() {
+    sessionStorage.clear();
+    alert("Logged out successfully!");
+    window.location.replace("index.html");
+}
+
+// Auto logout after 2 minutes
+let timer = setTimeout(() => {
+    sessionStorage.clear();
+    alert("Session expired!");
+    window.location.replace("index.html");
+}, 6000);
+
+document.onmousemove = document.onclick = document.onkeydown = () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+        sessionStorage.clear();
+        alert("Session expired!");
+        window.location.replace("index.html");
+    }, 6000);
+};
+
+</script>
+
+</body>
+</html>

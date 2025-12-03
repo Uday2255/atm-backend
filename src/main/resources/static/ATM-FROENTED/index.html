@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/auth.css">
+     <link rel="stylesheet" href="css/background.css">
+    
+</head>
+<body>
+
+    <h1 class="welcome-title">🏦 Hai, Welcome to ATM! 🏦</h1>   
+    <!-- ADD THIS DIV JUST AFTER <body> -->
+
+    <div class="container">
+        <h2>Login</h2>
+
+        <form id="loginForm">
+            <input type="text" id="accountNumber" placeholder="Account Number" maxlength="10" required>
+            <input type="password" id="pin" placeholder="PIN (4 digits)" maxlength="4" required>
+            <button type="submit" class="btn">Login</button>
+        </form>
+
+        <p id="msg"></p>
+        <a href="register.html">Create new account</a>
+    </div>
+
+    <script src="js/login.js"></script>
+
+    <!-- 100% FIX: NO CACHED DATA EVER AGAIN -->
+    <script>
+        sessionStorage.clear();
+        localStorage.clear();
+
+        // Clear input fields every time
+        document.querySelectorAll('input').forEach(input => input.value = '');
+
+        // Force reload from server if page loaded from cache
+        window.onpageshow = function(e) {
+            if (e.persisted) {
+                window.location.reload();
+            }
+        };
+
+        // Block back/forward cache
+        history.pushState(null, null, location.href);
+        window.onpopstate = function() {
+            history.go(1);
+        };
+    </script>
+    <script src="js/background.js"></script>
+    
+
+</body>
+</html>

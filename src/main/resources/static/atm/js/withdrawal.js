@@ -1,4 +1,4 @@
-// js/withdraw.js → FINAL VERSION (REAL BANK RULES)
+
 
 const accountNumber = sessionStorage.getItem("accountNumber");
 
@@ -14,7 +14,6 @@ document.getElementById("withdrawForm").addEventListener("submit", function (e) 
     const msg = document.getElementById("msg");
     msg.innerHTML = "";
 
-    // CLIENT-SIDE VALIDATION (FAST & CLEAN)
     if (isNaN(amount) || amount < 100) {
         msg.innerHTML = "<span style='color:#fca5a5; font-size:24px;'>Minimum withdrawal ₹100!</span>";
         return;
@@ -24,7 +23,7 @@ document.getElementById("withdrawForm").addEventListener("submit", function (e) 
         return;
     }
 
-    // CALL BACKEND
+
     fetch(`/api/withdraw/${accountNumber}/${amount}`, {
         method: "POST"
     })

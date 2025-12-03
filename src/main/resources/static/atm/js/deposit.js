@@ -64,7 +64,7 @@ function depositCash() {
         document.getElementById("note500").value = "0";
         updateTotal();
 
-        // Redirect after 3 seconds
+
         setTimeout(() => {
             window.location.href = "menu.html";
         }, 3000);
@@ -74,5 +74,4 @@ function depositCash() {
     });
 }
 
-// Initialize total on page load
 updateTotal();

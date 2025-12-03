@@ -1,4 +1,4 @@
-/* General body style */
+
 body {
     background-color: #0f172a;
     font-family: Arial, sans-serif;
@@ -8,7 +8,6 @@ welcome-title {
     text-align: center;
 }
 
-/* Container box for modules */
 .container {
     background-color: #1f1f1f;
     width: 400px;
@@ -19,13 +18,12 @@ welcome-title {
     border: 2px solid #4CAF50;
 }
 
-/* Headings */
 h2 {
     margin-bottom: 20px;
     font-size: 22px;
 }
 
-/* Transaction list */
+
 .list {
     list-style: none;
     padding: 0;
@@ -48,7 +46,6 @@ h2 {
     margin: 2px 0;
 }
 
-/* Back button */
 .back-btn {
     display: inline-block;
     margin-top: 20px;
@@ -64,7 +61,6 @@ h2 {
     background-color: #666;
 }
 
-/* Success/Error message (optional) */
 #msg {
     margin-top: 15px;
     font-weight: bold;

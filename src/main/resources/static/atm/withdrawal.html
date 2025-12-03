@@ -29,50 +29,49 @@
 
     <script src="js/withdrawal.js"></script>
     <script>
-// =============== 100% WORKING – BACK BUTTON = LOGIN PAGE ===============
+
 
 function isLoggedIn() {
     return sessionStorage.getItem("accountNumber") !== null;
 }
 
-// If not logged in → go to login
 if (!isLoggedIn()) {
     window.location.replace("index.html");
 }
 
-// THIS IS THE MAGIC LINE – MAKES BACK BUTTON GO TO LOGIN
+
 window.addEventListener("popstate", function() {
     if (isLoggedIn()) {
-        // User is still logged in → block going back
-        history.go(1);  // This pushes forward again
+
+        history.go(1);
     } else {
-        // Not logged in → force login page
+
         window.location.replace("index.html");
     }
 });
 
-// Run on first load
+
 history.pushState(null, null, location.href);
 
-// Block page cache completely
+
 window.onpageshow = function(event) {
     if (event.persisted) {
         window.location.reload();
     }
 };
 
-// Show username
+
 let username = sessionStorage.getItem("name") || "User";
 document.getElementById("welcomeText").textContent = `Welcome, ${username}`;
 
-// Logout function
+
 function logout() {
     sessionStorage.clear();
     alert("Logged out successfully!");
     window.location.replace("index.html");
 }
 
-// Auto logout after 2 minutes
+
 let timer = setTimeout(() => {
     sessionStorage.clear();
     alert("Session expired!");

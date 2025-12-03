@@ -1,20 +1,16 @@
-// js/balance.js  → FINAL SECURE & WORKING VERSION
 
 const accNumber = sessionStorage.getItem("accountNumber");
 const userName = sessionStorage.getItem("name");
 
-// BLOCK DIRECT ACCESS — MUST LOGIN FIRST
 if (!accNumber || !userName) {
     alert("Access Denied! Please login first.");
     window.location.href = "login.html";
-    throw new Error("User not logged in"); // Stop script execution
+    throw new Error("User not logged in");
 }
 
-// Show name and account number
 document.getElementById("name").innerText = userName;
 document.getElementById("accountNumber").innerText = accNumber;
 
-// Fetch fresh balance every time (no caching)
 fetch(`/api/balance/${accNumber}?t=${Date.now()}`)
     .then(res => {
         if (!res.ok) throw new Error("Server error");

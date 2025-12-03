@@ -1,4 +1,4 @@
-// js/register.js → FINAL WITH PHONE NUMBER (INDIAN ONLY + UNIQUE)
+
 
 document.getElementById("registerForm").addEventListener("submit", function(e) {
     e.preventDefault();
@@ -9,13 +9,12 @@ document.getElementById("registerForm").addEventListener("submit", function(e) {
     const initialBalance = parseFloat(document.getElementById("balance").value);
     const msg = document.getElementById("msg");
 
-    // Validation
     if (!name) {
         msg.innerHTML = "<span style='color:#fca5a5;'>Name is required!</span>";
         return;
     }
 
-    // Indian phone number validation (10 digits, starts with 6-9)
+
     if (!/^[6-9]\d{9}$/.test(phone)) {
         msg.innerHTML = "<span style='color:#fca5a5;'>Invalid phone number! Must be 10 digits & start with 6-9</span>";
         return;

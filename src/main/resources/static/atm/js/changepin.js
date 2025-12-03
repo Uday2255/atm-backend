@@ -17,7 +17,6 @@ document.getElementById("changePinForm").addEventListener("submit", function(e) 
 
     msg.innerHTML = "";
 
-    // Validation
     if (newPin !== confirmPin) {
         msg.innerHTML = "<span style='color:#fca5a5; font-size:22px;'>New PIN and Confirm PIN do not match!</span>";
         return;
@@ -27,7 +26,7 @@ document.getElementById("changePinForm").addEventListener("submit", function(e) 
         return;
     }
 
-    // Send to Spring Boot backend
+
     fetch(`/api/changepin/${accountNumber}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

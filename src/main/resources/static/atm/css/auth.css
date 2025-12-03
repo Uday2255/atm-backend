@@ -1,24 +1,17 @@
-/* -------------------------
-   BODY (FULL PAGE)
--------------------------- */
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #0f172a; /* dark ATM-like background */
+    background-color: #0f172a;
     color: white;
     display: flex;
-    flex-direction: column;   /* IMPORTANT → allows welcome text above box */
+    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     height: 100vh;
     margin: 0;
     padding-top: 40px;   
-     overflow-y: auto     /* spacing from top */
+     overflow-y: auto
 }
-
-/* -------------------------
-   WELCOME TITLE
--------------------------- */
 
 .welcome-title {
     text-align: center;
@@ -36,10 +29,6 @@ body {
     to   { text-shadow: 0 0 22px #00eaff; }
 }
 
-/* -------------------------
-   LOGIN / REGISTER BOX
--------------------------- */
-
 .container {
     background-color: #2c2c2c;
     padding: 40px 40px;
@@ -49,18 +38,13 @@ body {
     text-align: center;
 }
 
-/* -------------------------
-   HEADINGS INSIDE BOX
--------------------------- */
 
 h2 {
     margin-bottom: 20px;
     font-size: 24px;
 }
 
-/* -------------------------
-   INPUT FIELDS
--------------------------- */
+
 
 input[type="text"],
 input[type="password"],
@@ -73,10 +57,6 @@ input[type="number"] {
     outline: none;
     font-size: 16px;
 }
-
-/* -------------------------
-   BUTTON
--------------------------- */
 
 button.btn {
     width: 100%;
@@ -94,18 +74,14 @@ button.btn:hover {
     background-color: #45a049;
 }
 
-/* -------------------------
-   STATUS MESSAGE
--------------------------- */
+
 
 #msg {
     margin-top: 15px;
     font-weight: bold;
 }
 
-/* -------------------------
-   LINKS
--------------------------- */
+
 
 a {
     color: #4CAF50;
@@ -117,10 +93,6 @@ a {
 a:hover {
     text-decoration: underline;
 }
-
-/* -------------------------
-   OPTIONAL EXTRA STYLING
--------------------------- */
 
 .balance-display {
     margin: 10px 0;
@@ -143,17 +115,13 @@ a:hover {
     color: #4CAF50;
 }
 
-
-
-/* ADD THIS LINE ONLY – SOLVES EVERYTHING */
 .welcome-title,
 .container {
     position: relative;
     z-index: 10 !important;
 }
 
-/* ALSO ADD THIS TO MAKE SURE BACKGROUND STAYS BEHIND */
 .chain-bg {
-    z-index: 1 !important;   /* Was -1, now 1 but still behind login */
+    z-index: 1 !important;
 }
 

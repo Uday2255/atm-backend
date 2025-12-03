@@ -24,14 +24,10 @@ Database :   H2 (in-memory)
 API      :   RESTful JSON
 Styling  :   Pure CSS + CSS Animations
 
-
-
 # Main REST API Endpoints
-
-Method                         Endpoint                                      Description
-POST                           /api/register                                 Create new account 
-POST                           /api/login                                    Authenticate with account no + PIN
-POST                          /api/deposit/{accountNumber}/{amount}          Deposit cash
-POST                          /api/withdraw/{accountNumber}/{amount}         Withdraw cash
-GET                           /api/balance/{accountNumber}                   Get current balance
-GET                           /api/history/{accountNumber}                   Transaction history 
+POST                           /api/register                                 for Create new account,
+POST                           /api/login                                    for Authenticate with account no + PIN,
+POST                          /api/deposit/{accountNumber}/{amount}          for Deposit cash,
+POST                          /api/withdraw/{accountNumber}/{amount}         for Withdraw cash,
+GET                           /api/balance/{accountNumber}                   for Get current balance,
+GET                           /api/history/{accountNumber}                   for Transaction history. 

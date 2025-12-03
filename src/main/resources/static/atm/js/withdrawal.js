@@ -25,7 +25,7 @@ document.getElementById("withdrawForm").addEventListener("submit", function (e) 
     }
 
     // CALL BACKEND
-    fetch(`http://localhost:8080/api/withdraw/${accountNumber}/${amount}`, {
+    fetch(`/api/withdraw/${accountNumber}/${amount}`, {
         method: "POST"
     })
     .then(res => {

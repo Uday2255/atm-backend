@@ -15,7 +15,7 @@ document.getElementById("name").innerText = userName;
 document.getElementById("accountNumber").innerText = accNumber;
 
 // Fetch fresh balance every time (no caching)
-fetch(`http://localhost:8080/api/balance/${accNumber}?t=${Date.now()}`)
+fetch(`/api/balance/${accNumber}?t=${Date.now()}`)
     .then(res => {
         if (!res.ok) throw new Error("Server error");
         return res.json();

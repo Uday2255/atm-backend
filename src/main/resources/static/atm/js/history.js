@@ -2,7 +2,7 @@ const accountNumber = sessionStorage.getItem("accountNumber");
 
 const historyList = document.getElementById("historyList");
 
-fetch(`http://localhost:8080/api/history/${accountNumber}`)
+fetch(`/api/history/${accountNumber}`)
     .then(res => res.json())
     .then(transactions => {
         historyList.innerHTML = "";

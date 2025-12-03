@@ -16,7 +16,7 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
         return;
     }
 
-    fetch("http://localhost:8080/api/login", {
+    fetch("/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ accountNumber, pin })

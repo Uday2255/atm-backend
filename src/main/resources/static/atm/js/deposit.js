@@ -42,7 +42,7 @@ function depositCash() {
     }
 
     // Send to backend
-    fetch(`http://localhost:8080/api/deposit/${accountNumber}/${total}`, {
+    fetch(`/api/deposit/${accountNumber}/${total}`, {
         method: "POST"
     })
     .then(res => {

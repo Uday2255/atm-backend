@@ -31,7 +31,7 @@ document.getElementById("registerForm").addEventListener("submit", function(e) {
         return;
     }
 
-    fetch("http://localhost:8080/api/register", {
+    fetch("/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, phone, pin, balance: initialBalance })

@@ -28,7 +28,7 @@ document.getElementById("changePinForm").addEventListener("submit", function(e) 
     }
 
     // Send to Spring Boot backend
-    fetch(`http://localhost:8080/api/changepin/${accountNumber}`, {
+    fetch(`/api/changepin/${accountNumber}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ oldPin: oldPin, newPin: newPin })

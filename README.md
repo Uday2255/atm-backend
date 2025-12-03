@@ -18,7 +18,7 @@ Session management + back-button protection (user cannot go back after logout)
 Professional Spring Boot REST API backend with H2 in-memory database
 
 # Technology Stack
-Backend  :   Java 17 + Spring Boot 3
+Backend  :   Java 21 + Spring Boot 3
 Frontend :   HTML5, CSS3, Vanilla JavaScript
 Database :   H2 (in-memory)
 API      :   RESTful JSON

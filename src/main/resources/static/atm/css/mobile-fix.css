@@ -1,0 +1,17 @@
+/* MOBILE FIX – WORKS ON EVERY PAGE AUTOMATICALLY */
+* { box-sizing: border-box; }
+html, body { margin:0; padding:0; width:100%; height:100%; overflow-x:hidden; font-size:18px; }
+
+.container, .card, .atm-body, .main, form, div {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 15px !important;
+    margin: 0 auto !important;
+}
+
+input, button, select {
+    width: 100% !important;
+    padding: 14px !important;
+    font-size: 16px !important; /* stops iPhone zoom */
+    margin: 10px 0 !important;
+}

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.http.HttpStatus;
 
 @Service
 public class UserService {
@@ -27,7 +29,7 @@ public class UserService {
     // REGISTER — WITH PHONE + UNIQUE CHECK
     public UserAccount register(UserAccount user) {
         if (user.getPhone() != null && repo.existsByPhone(user.getPhone())) {
-            throw new RuntimeException("This phone number is already registered!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This phone number is already registered!");
         }
         user.setAccountNumber(generateAccountNumber());
         return repo.save(user);
@@ -65,14 +67,15 @@ public class UserService {
         UserAccount user = repo.findByAccountNumber(accNumber)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
+        // Inside withdrawAndReturnUser method
+        if (user.getBalance() < amount) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Insufficient Balance!");
+        }
         if (amount < 100) {
-            throw new RuntimeException("Minimum withdrawal amount is ₹100");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Minimum withdrawal amount is ₹100");
         }
         if (amount % 100 != 0) {
-            throw new RuntimeException("Withdrawal amount must be multiple of ₹100");
-        }
-        if (user.getBalance() < amount) {
-            throw new RuntimeException("Insufficient Balance!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Withdrawal amount must be multiple of ₹100");
         }
 
         user.setBalance(user.getBalance() - amount);

@@ -37,7 +37,7 @@ document.getElementById("registerForm").addEventListener("submit", function(e) {
     })
     .then(res => {
         if (!res.ok) {
-            return res.text().then(text => { throw new Error(text); });
+           return res.json().then(err => { throw new Error(err.message || "Registration failed"); });
         }
         return res.json();
     })
